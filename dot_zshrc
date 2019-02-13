@@ -1,0 +1,114 @@
+# ex: ts=4 sw=4 et filetype=sh
+
+if [ ! -d ~/.zplugin/bin ]; then
+    git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+fi
+
+source ~/.zplugin/bin/zplugin.zsh
+
+zplugin snippet https://github.com/caiogondim/bullet-train.zsh/blob/master/bullet-train.zsh-theme
+
+zplugin snippet OMZ::lib/git.zsh
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+
+zplugin snippet OMZ::plugins/minikube/minikube.plugin.zsh
+
+zplugin light zdharma/fast-syntax-highlighting
+
+BULLETTRAIN_PROMPT_CHAR=%#
+BULLETTRAIN_PROMPT_ORDER=(
+    status
+    context
+    dir
+    git
+)
+
+REPORTTIME=5
+
+EDITOR=nvim
+VEDITOR=code
+
+HISTFILE=~/.zsh_history
+SAVEHIST=10000
+HISTSIZE=10000
+
+# search history with fzf if installed
+if test -d /usr/local/opt/fzf/shell; then
+    . /usr/local/opt/fzf/shell/key-bindings.zsh
+fi
+
+autoload -Uz colors && colors
+autoload -Uz compinit compdef && compinit
+autoload -Uz promptinit && promptinit
+autoload -Uz bashcompinit && bashcompinit
+
+zplugin cdreplay >/dev/null
+
+setopt promptsubst
+setopt hist_ignore_dups
+setopt share_history
+setopt HIST_IGNORE_SPACE
+setopt APPEND_HISTORY
+setopt EXTENDED_HISTORY
+
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+				PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+fi
+
+alias ls="ls -G --color"
+alias ll="ls -laGh"
+
+alias gs="git status"
+alias gd="git diff"
+
+alias sudo="sudo -E"
+
+function take {
+    mkdir $1
+    cd $1
+}
+
+function extract {
+    if [ -f $1 ] ; then
+         case $1 in
+             *.tar.bz2)   tar xvjf $1     ;;
+             *.tar.gz)    tar xvzf $1     ;;
+             *.bz2)       bunzip2 $1      ;;
+             *.rar)       unrar x $1      ;;
+             *.gz)        gunzip $1       ;;
+             *.tar)       tar xvf $1      ;;
+             *.tbz2)      tar xvjf $1     ;;
+             *.tgz)       tar xvzf $1     ;;
+             *.zip)       unzip $1        ;;
+             *.Z)         uncompress $1   ;;
+             *.7z)        7z x $1         ;;
+             *)           echo "'$1' cannot be extracted via >extract<" ;;
+         esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+function scratch {
+    local parent="$HOME/tmp/scratch"
+    local latest="$parent/latest"
+    local scratch="$parent/scratch-`date +'%s'`"
+    mkdir -p $scratch
+    ln -nfs $scratch $latest
+    cd $latest
+    echo "Created $scratch"
+}
+
+function brew-cask-upgrade {
+    (set -x; brew update;)
+    (set -x; brew cleanup;)
+    (set -x; brew cask cleanup;)
+    while read pkg_ver; do
+        pkg=$(echo ${pkg_ver} | cut -d" " -f1)
+        brew cask info ${pkg} | head -n1 | tr -d ":" | grep -vqF "${pkg_ver}" \
+            && (set -x; brew cask uninstall ${pkg} --force) \
+            && (set -x; brew cask install ${pkg} --force)
+    done < <(brew cask list --versions)
+    (set -x; brew cleanup;)
+    (set -x; brew cask cleanup;)
+}
