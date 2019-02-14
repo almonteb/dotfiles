@@ -15,6 +15,7 @@ zplugin snippet OMZ::plugins/minikube/minikube.plugin.zsh
 
 zplugin light zdharma/fast-syntax-highlighting
 
+BULLETTRAIN_DIR_EXTENDED=2
 BULLETTRAIN_PROMPT_CHAR=%#
 BULLETTRAIN_PROMPT_ORDER=(
     status
@@ -35,6 +36,12 @@ HISTSIZE=10000
 # search history with fzf if installed
 if test -d /usr/local/opt/fzf/shell; then
     . /usr/local/opt/fzf/shell/key-bindings.zsh
+elif test -d /usr/share/fzf; then
+    . /usr/share/fzf/key-bindings.zsh
+fi
+
+if [ -f $HOME/.private_profile ]; then
+    . $HOME/.private_profile
 fi
 
 autoload -Uz colors && colors
@@ -52,7 +59,7 @@ setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-				PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+    PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
 fi
 
 alias ls="ls -G --color"
