@@ -4,6 +4,10 @@ if &compatible
 endif
 
 let mapleader=','
+
+if glob('~/.config/nvim/bundle') ==# ''
+    call system('git clone https://github.com/Shougo/dein.vim  ~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim')
+endif
 set runtimepath+=~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim
 call dein#begin('~/.config/nvim/bundle/')
 call dein#add('Shougo/dein.vim')
