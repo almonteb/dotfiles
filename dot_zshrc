@@ -33,6 +33,9 @@ HISTFILE=~/.zsh_history
 SAVEHIST=10000
 HISTSIZE=10000
 
+export GOPATH=~/src/go
+PATH="$GOPATH/bin:$PATH"
+
 # search history with fzf if installed
 if test -d /usr/local/opt/fzf/shell; then
     . /usr/local/opt/fzf/shell/key-bindings.zsh
