@@ -26,14 +26,13 @@ BULLETTRAIN_PROMPT_ORDER=(
 
 REPORTTIME=5
 
-EDITOR=nvim
-VEDITOR=code
-
 HISTFILE=~/.zsh_history
 SAVEHIST=10000
 HISTSIZE=10000
 WORDCHARS=${WORDCHARS//[&=\/;\!#%\{]}
 
+export EDITOR=nvim
+export VEDITOR=code
 export GOPATH=~/src/go
 PATH="$GOPATH/bin:$PATH"
 
