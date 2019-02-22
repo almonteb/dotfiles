@@ -13,6 +13,7 @@ zplugin snippet OMZ::plugins/git/git.plugin.zsh
 
 zplugin snippet OMZ::plugins/minikube/minikube.plugin.zsh
 
+zplugin light zsh-users/zsh-completions
 zplugin light zdharma/fast-syntax-highlighting
 
 BULLETTRAIN_DIR_EXTENDED=2
