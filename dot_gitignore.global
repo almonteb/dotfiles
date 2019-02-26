@@ -1,0 +1,10 @@
+*.iml
+.idea
+.ropeproject
+.coverage*
+.tmp
+.DS_Store
+pip-selfcheck.json
+lib64/
+.vscode/
+.pytest_cache/
