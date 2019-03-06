@@ -44,17 +44,19 @@ let g:jedi#completions_enabled = 0
 " Add the virtualenv's site-packages to vim path
 if has('python')
 py << EOF
-import os.path
+import os
 import sys
 import vim
-project_base_dir = os.getcwd()
-activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-if os.path.isfile(activate_this):
-    sys.path.insert(0, project_base_dir)
-    execfile(activate_this, dict(__file__=activate_this))
+for p in [os.getcwd(), os.environ.get('VIRTUAL_ENV')]:
+    activate_this = os.path.join(p, 'bin/activate_this.py')
+    if os.path.isfile(activate_this):
+        sys.path.insert(0, p)
+        execfile(activate_this, dict(__file__=activate_this))
 EOF
 if filereadable('bin/python')
     let g:deoplete#sources#jedi#python_path = 'bin/python'
+elseif $VIRTUAL_ENV
+    let g:deoplete#sources#jedi#python_path = $VIRTUAL_ENV . 'bin/python'
 endif
 endif
 
