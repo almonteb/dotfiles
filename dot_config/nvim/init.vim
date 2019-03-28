@@ -48,6 +48,7 @@ import os
 import sys
 import vim
 for p in [os.getcwd(), os.environ.get('VIRTUAL_ENV')]:
+    if not p: continue
     activate_this = os.path.join(p, 'bin/activate_this.py')
     if os.path.isfile(activate_this):
         sys.path.insert(0, p)
