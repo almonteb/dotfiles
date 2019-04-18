@@ -122,6 +122,9 @@ let g:one_allow_italics = 1
 au ColorScheme * hi Normal ctermbg=none guibg=none
 set background=dark
 
+let g:terraform_align=1
+call dein#add('hashivim/vim-terraform')
+
 call dein#end()
 
 " install not installed plugins on startup.
@@ -131,6 +134,7 @@ endif
 
 filetype plugin indent on
 syntax enable
+set expandtab
 
 set mouse=a
 
