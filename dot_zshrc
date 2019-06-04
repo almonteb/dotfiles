@@ -81,7 +81,7 @@ alias gd="git diff"
 alias sudo="sudo -E"
 
 function take {
-    mkdir $1
+    mkdir -p $1
     cd $1
 }
 
