@@ -72,6 +72,17 @@ if [ -x "$(command -v pyenv)" ]; then
     eval "$(pyenv init -)"
 fi
 
+if [ -x "$(command -v rbenv)" ]; then
+    eval "$(rbenv init -)"
+fi
+
+ssh_agent_pid=$(pidof ssh-agent | awk '{print $NF}')
+if [[ -z $ssh_agent_pid ]] ; then
+    eval $(ssh-agent)
+else
+    export SSH_AUTH_SOCK=$(find ${TMPDIR:-/tmp} -path "*ssh*" -type s -iname agent.\* -uid $(id -u) -print 2>/dev/null)
+fi
+
 alias ls="ls -G --color"
 alias ll="ls -laGh"
 
