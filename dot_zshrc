@@ -1,20 +1,25 @@
 # ex: ts=4 sw=4 et filetype=sh
 
-if [ ! -d ~/.zinit/bin ]; then
-    git clone git@github.com:zdharma/zinit.git ~/.zinit/bin
+zi_home="${HOME}/.zi" && mkdir -p $zi_home
+
+if [ ! -d "${zi_home}/bin" ]; then
+    git clone git@github.com:z-shell/zi.git "${zi_home}/bin"
 fi
 
-source ~/.zinit/bin/zinit.zsh
+source "${zi_home}/bin/zi.zsh"
 
-zplugin snippet https://github.com/caiogondim/bullet-train.zsh/blob/master/bullet-train.zsh-theme
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
 
-zplugin snippet OMZ::lib/git.zsh
-zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zi snippet https://github.com/caiogondim/bullet-train.zsh/blob/master/bullet-train.zsh-theme
 
-zplugin snippet OMZ::plugins/minikube/minikube.plugin.zsh
+zi snippet OMZ::lib/git.zsh
+zi snippet OMZ::plugins/git/git.plugin.zsh
 
-zplugin light zsh-users/zsh-completions
-zplugin light zdharma/fast-syntax-highlighting
+zi snippet OMZ::plugins/minikube/minikube.plugin.zsh
+
+zi light zsh-users/zsh-completions
+zi light zdharma/fast-syntax-highlighting
 
 BULLETTRAIN_DIR_EXTENDED=2
 BULLETTRAIN_PROMPT_CHAR=%#
@@ -53,7 +58,7 @@ autoload -Uz compinit compdef && compinit
 autoload -Uz promptinit && promptinit
 autoload -Uz bashcompinit && bashcompinit
 
-zplugin cdreplay >/dev/null
+zi cdreplay >/dev/null
 
 setopt promptsubst
 setopt hist_ignore_dups
