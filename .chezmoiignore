@@ -1,2 +1,6 @@
 README.md
 Makefile
+
+{{ if ne .chezmoi.os "darwin" }}
+Brewfile
+{{ end }}
