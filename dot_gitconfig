@@ -1,7 +1,7 @@
 [user]
 	name = Brendan Almonte
 	email = almonteb@datawh.net
-[includeIf "gitdir:~/stash/"]
+[includeIf "gitdir:~/gitlab/"]
 	path = ~/.gitconfig.work
 [branch]
 	autosetuprebase = always
