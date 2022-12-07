@@ -1,6 +1,7 @@
 # ex: ts=4 sw=4 et filetype=sh
 
 zi_home="${HOME}/.zi" && mkdir -p $zi_home
+ZSH_CACHE_DIR="${HOME}/.zsh_cache" && mkdir -p $ZSH_CACHE_DIR
 
 if [ ! -d "${zi_home}/bin" ]; then
     git clone git@github.com:z-shell/zi.git "${zi_home}/bin"
