@@ -82,6 +82,10 @@ if [ -x "$(command -v rbenv)" ]; then
     eval "$(rbenv init -)"
 fi
 
+if [ -x "$(command -v aws_completer)" ]; then
+    complete -C aws_completer aws
+fi
+
 ssh_agent_pid=$(pidof ssh-agent | awk '{print $NF}')
 if [[ -z $ssh_agent_pid ]] ; then
     eval $(ssh-agent)
