@@ -1,8 +1,8 @@
 [user]
 	name = Brendan Almonte
 	email = almonteb@datawh.net
-[includeIf "gitdir:~/gitlab/"]
-	path = ~/.gitconfig.work
+[url "git@github.com:"]
+	insteadOf = https://github.com/
 [branch]
 	autosetuprebase = always
 [alias]
