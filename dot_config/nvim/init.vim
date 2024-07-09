@@ -119,7 +119,7 @@ call dein#add('rakr/vim-one')
 colorscheme one
 set termguicolors
 let g:one_allow_italics = 1
-au ColorScheme * hi Normal ctermbg=none guibg=none
+hi Normal ctermbg=none guibg=none
 set background=dark
 
 let g:terraform_align=1
