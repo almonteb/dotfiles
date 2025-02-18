@@ -1,2 +1,3 @@
 window-decoration = none
 quit-after-last-window-closed = true
+term = xterm-256color
