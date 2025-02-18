@@ -1,1 +1,2 @@
 window-decoration = none
+quit-after-last-window-closed = true
