@@ -22,6 +22,7 @@ zi snippet OMZ::plugins/minikube/minikube.plugin.zsh
 zi light zsh-users/zsh-completions
 zi light zdharma/fast-syntax-highlighting
 
+BULLETTRAIN_GIT_PROMPT_CMD="\$(_omz_git_prompt_info)"
 BULLETTRAIN_DIR_EXTENDED=2
 BULLETTRAIN_PROMPT_CHAR=%#
 BULLETTRAIN_PROMPT_ORDER=(
