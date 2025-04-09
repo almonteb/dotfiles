@@ -17,8 +17,6 @@ zi snippet https://github.com/caiogondim/bullet-train.zsh/blob/master/bullet-tra
 zi snippet OMZ::lib/git.zsh
 zi snippet OMZ::plugins/git/git.plugin.zsh
 
-zi snippet OMZ::plugins/minikube/minikube.plugin.zsh
-
 zi light zsh-users/zsh-completions
 zi light zdharma/fast-syntax-highlighting
 
