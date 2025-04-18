@@ -69,6 +69,10 @@ setopt EXTENDED_HISTORY
 
 bindkey -e
 
+if [ -d $HOME/bin ]; then
+    PATH=$HOME/bin:$PATH
+fi
+
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
 fi
