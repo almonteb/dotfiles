@@ -3,3 +3,4 @@ quit-after-last-window-closed = true
 term = xterm-256color
 font-feature = -calt, -liga, -dlig
 theme = UltraDark
+app-notifications = no-clipboard-copy
