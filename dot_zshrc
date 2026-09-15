@@ -81,12 +81,8 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
 fi
 
-if [ -x "$(command -v pyenv)" ]; then
-    eval "$(pyenv init -)"
-fi
-
-if [ -x "$(command -v rbenv)" ]; then
-    eval "$(rbenv init -)"
+if [ -x "$(command -v mise)" ]; then
+    eval "$(mise activate)"
 fi
 
 if [ -x "$(command -v aws_completer)" ]; then
